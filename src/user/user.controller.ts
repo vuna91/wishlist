@@ -15,7 +15,7 @@ userRouter.post(
   wrapRequestHandler(
     async (req: ValidatedRequest<createUserSchema>, res: Response) => {
       const createdUser = await userService.createUser(req.body);
-      res.json({ data: createdUser });
+      res.json(createdUser);
     }
   )
 );
