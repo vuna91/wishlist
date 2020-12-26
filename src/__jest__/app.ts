@@ -1,10 +1,13 @@
-import express from 'express';
 import { router } from '../routes';
-import bodyParser from 'body-parser';
 import { response } from '../common/response';
+
+import express from 'express';
+import bodyParser from 'body-parser';
+import jwtUtil from '../common/jwtUtil';
 
 const app: express.Application = express();
 app.use(bodyParser.json());
+app.use(jwtUtil.parserToken);
 app.use(router);
 app.use(response);
 

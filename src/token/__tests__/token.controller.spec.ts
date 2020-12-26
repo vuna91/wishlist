@@ -1,38 +1,36 @@
 import request from 'supertest';
 import app from '../../__jest__/app';
-import userService from '../user.service';
+import tokenService from '../token.service';
 
-jest.mock('../user.service');
+jest.mock('../token.service');
 
-describe('user.controller', () => {
+describe('token.controller', () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
 
-  describe('POST /users', () => {
+  describe('POST /token', () => {
     const username = '_username';
     const password = '_password';
 
-    it('should call service when input is correct', async () => {
+    it('should call token service when input is correct', async () => {
       // Given
-      const expectedResult = {
-        id: 1,
-        username,
-        password
-      };
-      (userService.createUser as jest.Mock).mockResolvedValue(expectedResult);
+      const expectedResult = 'valid token';
+      (tokenService.generateAccessToken as jest.Mock).mockResolvedValue(
+        expectedResult
+      );
 
       // When
       return request(app)
-        .post('/users')
+        .post('/token')
         .send({ username, password })
         .then((res) => {
           // Then
-          expect(userService.createUser).toBeCalledWith({
+          expect(tokenService.generateAccessToken).toBeCalledWith({
             username,
             password
           });
-          expect(res.body).toEqual(expectedResult);
+          expect(res.body).toEqual({ accessToken: expectedResult });
           expect(res.status).toEqual(200);
         });
     });
@@ -40,11 +38,11 @@ describe('user.controller', () => {
     it('should return 400 status when input is incorrect', async () => {
       // When
       return request(app)
-        .post('/users')
+        .post('/token')
         .send({ username: null, password })
         .then((res) => {
           // Then
-          expect(userService.createUser).not.toHaveBeenCalled();
+          expect(tokenService.generateAccessToken).not.toHaveBeenCalled();
           expect(res.status).toEqual(400);
         });
     });

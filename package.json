@@ -7,7 +7,9 @@
     "test": "jest --verbose",
     "test:cov": "npm run test -- --coverage",
     "build": "tsc",
-    "start": "npm run build & node dist/app.js"
+    "start": "npm run build & node dist/app.js",
+    "migrate:up": "sequelize-cli db:migrate",
+    "prettier": "prettier --write"
   },
   "repository": {
     "type": "git",
