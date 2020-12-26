@@ -11,11 +11,18 @@ git clone https://github.com/vuna91/wishlist.git
   docker pull postgres
   docker run -d -p 5432:5432 --name my-postgres -e POSTGRES_PASSWORD=123 postgres
   ```
-  Create database name `wishlist` in your postgres
-  Update POSTGRES_PASSWORD into `src/common/postgres.ts`
+  Create database name `wishlist` in your postgres database
+  ```
+  docker exec -it my-postgres bash
+  psql -U postgres
+  CREATE DATABASE wishlist;
+  ```
+
+  Update your POSTGRES_PASSWORD into `.env`
 2.2 Install dependencies
   ```
-  npm i
+  npm i -g typescript
+  npm i  
   npm run migrate:up
   ```
 2.3 Run unit test
@@ -27,12 +34,14 @@ git clone https://github.com/vuna91/wishlist.git
   ```
   npm start
   ```
-3. Testing flow
+
+## Testing flow
   ```
   Create user -> Get access token -> Use this token to send request for testing wishlist management
   ```
+You can use the postman collection here for testing this app https://github.com/vuna91/wishlist/blob/main/Wishlist-APIpostman_collection.json
 
-4. Example
+## Example
 4.1 Create User
   ```
   curl --location --request POST 'http://localhost:3000/users' \

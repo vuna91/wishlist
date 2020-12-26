@@ -3,7 +3,7 @@ import { sign, verify } from 'jsonwebtoken';
 import { get, set } from 'lodash';
 import { AUTHENTICATION } from '../token/token.constant';
 
-const SECRET =
+const SECRET = process.env.JWT_SECRET ||
   'CA978112CA1BBDCAFAC231B39A23DC4DA786EFF8147C4E72B9807785AFEE48BB';
 
 const generateToken = (data: any): string => {

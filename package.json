@@ -8,7 +8,7 @@
     "test:cov": "npm run test -- --coverage",
     "build": "tsc",
     "start": "npm run build & node dist/app.js",
-    "migrate:up": "sequelize-cli db:migrate",
+    "migrate:up": "npx sequelize-cli db:migrate",
     "prettier": "prettier --write"
   },
   "repository": {
@@ -38,6 +38,7 @@
     "@hapi/joi": "~15",
     "@types/supertest": "^2.0.10",
     "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-joi-validation": "4.0.0",
     "joi-extract-type": "^15.0.8",
