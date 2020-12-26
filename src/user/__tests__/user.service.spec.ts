@@ -1,7 +1,9 @@
+import bcryptUtil from '../../common/bcryptUtil';
 import userRepository from '../user.repository';
 import userService from '../user.service';
 
 jest.mock('../user.repository');
+jest.mock('../../common/bcryptUtil');
 
 describe('user.service', () => {
   afterEach(() => {
@@ -21,13 +23,14 @@ describe('user.service', () => {
       };
       (userRepository.getByUsername as jest.Mock).mockResolvedValue(null);
       (userRepository.create as jest.Mock).mockResolvedValue(expectedResult);
+      (bcryptUtil.hashPass as jest.Mock).mockResolvedValue('_hash');
 
       // When
       const createdUser = await userService.createUser({ username, password });
 
       // Then
       expect(userRepository.getByUsername).toBeCalledWith(username);
-      expect(userRepository.create).toBeCalledWith({ username, password });
+      expect(userRepository.create).toBeCalledWith({ username, password: '_hash' });
       expect(createdUser).toEqual(expectedResult);
     });
 
