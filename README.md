@@ -6,7 +6,8 @@ Wishlist management tool
 git clone https://github.com/vuna91/wishlist.git
 
 2. Setup and run
-2.1 Install Postgres
+
+2.1. Install Postgres
   ```
   docker pull postgres
   docker run -d -p 5432:5432 --name my-postgres -e POSTGRES_PASSWORD=123 postgres
@@ -19,18 +20,19 @@ git clone https://github.com/vuna91/wishlist.git
   ```
 
   Update your POSTGRES_PASSWORD into `.env`
-2.2 Install dependencies
+  
+2.2. Install dependencies
   ```
   npm i -g typescript
   npm i  
   npm run migrate:up
   ```
-2.3 Run unit test
+2.3. Run unit test
   ```
   npm run test
   npm run test:cov
   ```
-2.4 Start project
+2.4. Start project
   ```
   npm start
   ```
@@ -42,7 +44,7 @@ git clone https://github.com/vuna91/wishlist.git
 You can use the postman collection here for testing this app https://github.com/vuna91/wishlist/blob/main/Wishlist-APIpostman_collection.json
 
 ## Example
-4.1 Create User
+4.1. Create User
   ```
   curl --location --request POST 'http://localhost:3000/users' \
   --header 'Content-Type: application/json' \
@@ -51,7 +53,7 @@ You can use the postman collection here for testing this app https://github.com/
       "password": "password"
   }'
   ```
-4.2 Get Token
+4.2. Get Token
   ```
   curl --location --request POST 'http://localhost:3000/token' \
   --header 'Content-Type: application/json' \
@@ -60,7 +62,7 @@ You can use the postman collection here for testing this app https://github.com/
       "password": "password"
   }'
   ```
-4.2 Create wishlist  
+4.3. Create wishlist  
   ```
   curl --location --request POST 'http://localhost:3000/wishes' \
   --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYwODk1Njk2MSwiZXhwIjoxNjA4OTYwNTYxfQ.puzrNgb5n1JQc-sOj5gXG2I-IA0RW5y6PZl5KEwz_y4' \
